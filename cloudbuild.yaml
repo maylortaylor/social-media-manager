@@ -1,0 +1,5 @@
+steps:
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install', '@rollup/rollup-linux-x64-gnu', '--save-optional']
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build'] 
