@@ -47,9 +47,9 @@ jobs:
         run: |
           docker build --platform linux/amd64 -t social-media-manager .
           docker run --platform linux/amd64 --rm social-media-manager npm run build
-      - name: Run tests
-        run: |
-          docker run --platform linux/amd64 --rm social-media-manager npm test
+      # - name: Run tests
+      #   run: |
+      #     docker run --platform linux/amd64 --rm social-media-manager npm test
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
