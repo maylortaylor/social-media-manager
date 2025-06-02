@@ -1,5 +1,25 @@
 steps:
+  # Install dependencies
   - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'npm'
+    args: ['install']
+    dir: 'frontend'
+
+  # Install TypeScript globally
+  - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'npm'
+    args: ['install', '-g', 'typescript']
+
+  # Install platform-specific Rollup
+  - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'npm'
     args: ['install', '@rollup/rollup-linux-x64-gnu', '--save-optional']
+    dir: 'frontend'
+
+  # Build the frontend
   - name: 'gcr.io/cloud-builders/npm'
-    args: ['run', 'build'] 
+    entrypoint: 'npm'
+    args: ['run', 'build']
+    dir: 'frontend'
+
+timeout: '1800s' 
