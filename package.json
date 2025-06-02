@@ -1,6 +1,6 @@
 {
   "name": "social-media-manager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A comprehensive social media management system for Suite E Studios and @StPeteMusic",
   "scripts": {
     "build": "cd frontend && npm run build"
