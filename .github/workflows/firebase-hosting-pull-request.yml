@@ -15,10 +15,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci && npm run build
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+          cache: "npm"
+      - run: cd frontend && rm -rf node_modules package-lock.json
+      - run: cd frontend && npm install
+      - run: cd frontend && npm install @rollup/rollup-linux-x64-gnu
+      - run: cd frontend && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOCIAL_MEDIA_MANAGER_EB123 }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           projectId: social-media-manager-eb123
           entryPoint: .
