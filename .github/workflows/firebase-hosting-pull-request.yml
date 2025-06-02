@@ -22,11 +22,12 @@ jobs:
           cache: "npm"
       - run: cd frontend && rm -rf node_modules package-lock.json
       - run: cd frontend && npm install
-      - run: cd frontend && npm install @rollup/rollup-linux-x64-gnu
+      - run: cd frontend && npm install @rollup/rollup-linux-x64-gnu --save-optional
       - run: cd frontend && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           projectId: social-media-manager-eb123
+          channelId: preview
           entryPoint: .
