@@ -15,15 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "20.x"
-          cache: "npm"
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
       - name: Build with Docker
         run: |
-          docker build -t social-media-manager .
-          docker run --rm social-media-manager npm run build
+          docker build --platform linux/amd64 -t social-media-manager .
+          docker run --platform linux/amd64 --rm social-media-manager npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

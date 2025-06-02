@@ -13,8 +13,10 @@ RUN npm install
 # Copy frontend package files
 COPY frontend/package*.json ./frontend/
 
-# Install frontend dependencies
-RUN cd frontend && npm install && npm install @rollup/rollup-linux-arm64-gnu
+# Install frontend dependencies with platform-specific Rollup
+RUN cd frontend && \
+    npm install && \
+    npm install @rollup/rollup-linux-x64-gnu --save-optional
 
 # Copy the rest of the application code
 COPY . .
