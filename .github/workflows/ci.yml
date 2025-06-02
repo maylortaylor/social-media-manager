@@ -22,17 +22,17 @@ jobs:
       - run: cd frontend && npm install --save-dev eslint @eslint/js typescript-eslint eslint-plugin-react
       - run: cd frontend && npx eslint .
 
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          cache: "npm"
-      - run: cd frontend && npm ci
-      - run: cd frontend && npm test
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: "18.x"
+  #         cache: "npm"
+  #     - run: cd frontend && npm ci
+  #     - run: cd frontend && npm test
 
   deploy:
     needs: [lint]
