@@ -17,6 +17,10 @@ The project is a comprehensive social media management system for Suite E Studio
 - [x] Configure Firebase security rules and deploy
 - [ ] Set up environment variables and secrets
 - [ ] Set up CI/CD pipeline with GitHub Actions
+- [ ] Dockerize the build environment
+  - [ ] Create a Dockerfile
+  - [ ] Build and test the Docker image
+  - [ ] Update CI/CD pipeline to use the Docker image
 
 ### Phase 2: Core Authentication and User Management
 - [ ] Implement Google Authentication

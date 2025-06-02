@@ -20,10 +20,10 @@ jobs:
         with:
           node-version: "20.x"
           cache: "npm"
-      - run: cd frontend && rm -rf node_modules package-lock.json
-      - run: cd frontend && npm install
-      - run: cd frontend && npm install @rollup/rollup-linux-x64-gnu --save-optional
-      - run: cd frontend && npm run build
+      - name: Build with Docker
+        run: |
+          docker build -t social-media-manager .
+          docker run --rm social-media-manager npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
