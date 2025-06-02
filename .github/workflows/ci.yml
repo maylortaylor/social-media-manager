@@ -19,7 +19,8 @@ jobs:
           node-version: "18.x"
           cache: "npm"
       - run: npm ci
-      - run: npm run lint
+      - run: npm install --save-dev eslint @eslint/js typescript-eslint eslint-plugin-react
+      - run: npx eslint .
 
   test:
     runs-on: ubuntu-latest
