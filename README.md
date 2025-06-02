@@ -125,4 +125,36 @@ firebase deploy --only functions
 
 ## Support
 
-For support, please contact [contact information] 
+For support, please contact [contact information]
+
+## Environment Variables
+
+### Frontend
+The following environment variables are required for the frontend. Copy `.env.example` to `.env` and fill in the values:
+
+```
+# Frontend Environment Variables Example
+VITE_API_URL=http://localhost:8000
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_firebase_app_id
+```
+
+### Backend
+The following environment variables are required for the backend. Copy `.env.example` to `.env` and fill in the values:
+
+```
+# Backend Environment Variables Example
+PORT=3000
+NODE_ENV=development
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=mydatabase
+DB_USER=myuser
+DB_PASSWORD=mypassword
+JWT_SECRET=your_jwt_secret_here
+API_KEY=your_api_key_here
+``` 

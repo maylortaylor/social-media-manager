@@ -7,7 +7,9 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "rebuild": "rm -rf node_modules && rm -rf packge-lock.json && npm cache clean --force && npm install",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "firebase:deploy": "firebase deploy --only hosting",
+    "firebase:deploy:rules": "firebase deploy --only firestore:rules,storage:rules"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",
@@ -17,6 +19,7 @@
     "@radix-ui/react-scroll-area": "^1.2.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "firebase": "^11.8.1",
     "lucide-react": "^0.511.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -35,6 +38,7 @@
     "eslint": "^9.28.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
+    "firebase-tools": "^14.5.1",
     "postcss": "^8.5.4",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3",

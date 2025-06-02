@@ -15,4 +15,4 @@ service cloud.firestore {
       allow read, write: if request.time < timestamp.date(2025, 7, 2);
     }
   }
-}
+} 

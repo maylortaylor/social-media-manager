@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "social-media-manager-eb123"
+  },
+  "targets": {
+    "social-media-manager-eb123": {
+      "storage": {
+        "rules": [
+          "social-media-manager-eb123.appspot.com"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
