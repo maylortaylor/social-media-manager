@@ -16,10 +16,12 @@ steps:
     args: ['install', '@rollup/rollup-linux-x64-gnu', '--save-optional']
     dir: 'frontend'
 
-  # Build the frontend
-  - name: 'gcr.io/cloud-builders/npm'
-    entrypoint: 'npm'
-    args: ['run', 'build']
-    dir: 'frontend'
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '--platform', 'linux/amd64', '-t', 'social-media-manager', '.']
+
+  # Run the build command in the container
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['run', '--platform', 'linux/amd64', '--rm', 'social-media-manager', 'npm', 'run', 'build']
 
 timeout: '1800s' 
