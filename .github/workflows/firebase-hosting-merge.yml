@@ -22,10 +22,8 @@ jobs:
           cache: "npm"
       - run: cd frontend && rm -rf node_modules package-lock.json
       - run: cd frontend && npm install
-      - name: "gcr.io/cloud-builders/npm"
-        args: ["install", "@rollup/rollup-linux-x64-gnu", "--save-optional"]
-      - name: "gcr.io/cloud-builders/npm"
-        args: ["run", "build"]
+      - run: cd frontend && npm install @rollup/rollup-linux-x64-gnu --save-optional
+      - run: cd frontend && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
