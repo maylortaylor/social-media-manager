@@ -1,6 +1,6 @@
 /** @format */
 
-import { Bell, Search, Settings, User } from "lucide-react";
+import { Bell, Search, User } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
