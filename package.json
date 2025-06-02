@@ -1,0 +1,12 @@
+{
+  "name": "social_manager",
+  "version": "1.0.0",
+  "description": "A comprehensive social media management system for Suite E Studios and @StPeteMusic, built with React, Deno, and Firebase.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
