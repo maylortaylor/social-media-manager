@@ -32,10 +32,8 @@
       }
     ]
   },
-  "storage": [
-    {
-      "target": "rules",
-      "rules": "firebase/storage.rules"
-    }
-  ]
+  "storage": {
+    "bucket": "social-media-manager-eb123.appspot.com",
+    "rules": "firebase/storage.rules"
+  }
 }
