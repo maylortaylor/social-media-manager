@@ -16,13 +16,16 @@ COPY frontend/package*.json ./frontend/
 # Install frontend dependencies with platform-specific Rollup
 RUN cd frontend && \
     npm install && \
+    npm install typescript --save-dev && \
     npm install @rollup/rollup-linux-x64-gnu --save-optional
 
 # Copy the rest of the application code
 COPY . .
 
 # Build the frontend
-RUN cd frontend && npm run build
+RUN cd frontend && \
+    export PATH=$PATH:./node_modules/.bin && \
+    npm run build
 
 # Expose the port the app runs on
 EXPOSE 3000
