@@ -1,6 +1,6 @@
-# Social Media Management System
+# Social Media Manager
 
-A comprehensive social media management system for Suite E Studios and @StPeteMusic, built with React, Deno, and Firebase.
+A comprehensive social media management system for Suite E Studios and @StPeteMusic, built with React, Node.js, and Firebase.
 
 ## Features
 
@@ -11,35 +11,71 @@ A comprehensive social media management system for Suite E Studios and @StPeteMu
 - Real-time content preview
 - Analytics dashboard
 
-## Tech Stack
+## Project Structure
 
-- **Frontend**: React with TypeScript, Tailwind CSS, shadcn/ui
-- **Backend**: Deno
-- **Database**: Firebase (Firestore)
-- **Storage**: Firebase Storage
-- **Authentication**: Google Auth, OAuth 2.0
-- **Containerization**: Docker
+```
+social_manager/
+├── backend/                 # Backend Node.js server
+│   ├── src/                # Source code
+│   │   └── server.js       # Express server
+│   ├── package.json        # Backend dependencies
+│   └── .gitignore         # Backend-specific gitignore
+├── frontend/               # React frontend application
+│   ├── src/               # Source code
+│   ├── public/            # Static files
+│   ├── package.json       # Frontend dependencies
+│   └── .gitignore        # Frontend-specific gitignore
+├── functions/             # Firebase Cloud Functions
+├── docker/               # Docker configuration files
+│   ├── backend/         # Backend Dockerfile
+│   └── frontend/        # Frontend Dockerfile
+├── .github/             # GitHub Actions workflows
+├── scripts/             # Utility scripts
+├── docker-compose.yml   # Docker Compose configuration
+├── package.json         # Root package.json
+└── README.md           # This file
+```
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed:
-
-- Node.js 18.x or later
-- npm 9.x or later
-- Deno 1.x or later
-- Docker Desktop
-- Firebase CLI
+- Node.js 20 or later
+- Docker and Docker Compose
+- Firebase CLI (`npm install -g firebase-tools`)
 - Git
 
-## Installation
+## Getting Started
 
-1. **Clone the repository**
+### Option 1: Using Docker (Recommended)
+
+1. Clone the repository:
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/yourusername/social_manager.git
    cd social_manager
    ```
 
-2. **Install dependencies**
+2. Start the development environment:
+   ```bash
+   docker-compose up
+   ```
+   This will:
+   - Build and start both frontend and backend containers
+   - Mount your local code for development
+   - Set up proper networking between services
+   - Handle node_modules properly
+
+3. Access the applications:
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:3000
+
+### Option 2: Local Development
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/social_manager.git
+   cd social_manager
+   ```
+
+2. Install dependencies:
    ```bash
    # Install root dependencies
    npm install
@@ -47,85 +83,104 @@ Before you begin, ensure you have the following installed:
    # Install frontend dependencies
    cd frontend
    npm install
+
+   # Install backend dependencies
+   cd ../backend
+   npm install
    ```
 
-3. **Set up environment variables**
+3. Start the development servers:
+
+   In one terminal:
    ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
+   # Start the backend server
+   cd backend
+   npm start
    ```
 
-4. **Initialize Firebase**
+   In another terminal:
    ```bash
-   firebase login
-   firebase init
-   # Select Firestore, Storage, and Functions
+   # Start the frontend development server
+   cd frontend
+   npm run dev
    ```
+
+4. Access the applications:
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:3000
 
 ## Development
 
-1. **Start the development environment**
-   ```bash
-   # Start all services
-   docker-compose up -d
+### Environment Variables
 
-   # Start frontend development server
-   cd frontend
-   npm run dev
+1. Frontend:
+   - Copy `frontend/.env.example` to `frontend/.env`
+   - Update the variables as needed
 
-   # Start backend development server
-   cd backend
-   deno task dev
-   ```
+2. Backend:
+   - Copy `backend/.env.example` to `backend/.env`
+   - Update the variables as needed
 
-2. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:8000
+### Available Scripts
 
-## Project Structure
+#### Root Directory
+- `npm install`: Install all dependencies
+- `npm run dev`: Start both frontend and backend in development mode
 
-```
-social_manager/
-├── frontend/          # React frontend application
-├── backend/           # Deno backend application
-├── docker/            # Docker configuration
-├── firebase/          # Firebase configuration
-└── scripts/           # Build and deployment scripts
-```
+#### Frontend
+- `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm run lint`: Run ESLint
+- `npm run test`: Run tests
+
+#### Backend
+- `npm start`: Start the server
+- `npm run dev`: Start server with nodemon
+- `npm run lint`: Run ESLint
+- `npm run test`: Run tests
 
 ## Deployment
 
-### Frontend Deployment
-```bash
-cd frontend
-npm run build
-firebase deploy --only hosting
-```
+### Firebase Deployment
 
-### Backend Deployment
-```bash
-cd backend
-deno task deploy
-```
+1. Build the frontend:
+   ```bash
+   cd frontend
+   npm run build
+   ```
 
-### Firebase Functions Deployment
-```bash
-firebase deploy --only functions
-```
+2. Deploy to Firebase:
+   ```bash
+   firebase deploy
+   ```
+
+### Docker Deployment
+
+1. Build the Docker images:
+   ```bash
+   docker-compose build
+   ```
+
+2. Push the images to your registry:
+   ```bash
+   docker-compose push
+   ```
 
 ## Contributing
 
-1. Create a new branch for your feature
-2. Make your changes
-3. Submit a pull request
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-[License Type] - See LICENSE file for details
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Support
 
-For support, please contact [contact information]
+For support, email support@suiteestudios.com or join our Slack channel.
 
 ## Environment Variables
 
