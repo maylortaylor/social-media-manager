@@ -1,20 +1,27 @@
 /** @format */
 
 const express = require("express");
-const path = require("path");
+const cors = require("cors");
 
 const app = express();
 const port = process.env.PORT || 8080;
 
-// Serve static files from the frontend/dist directory
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-// Handle all routes by serving index.html
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  res.json({ status: "healthy" });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Something broke!" });
 });
 
 // Start the server
 app.listen(port, "0.0.0.0", () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
