@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy root package.json and package-lock.json
 COPY package*.json ./
 
-# Install root dependencies (if any)
+# Install root dependencies
 RUN npm install
 
 # Copy frontend package files
@@ -17,8 +17,7 @@ COPY frontend/package*.json ./frontend/
 RUN cd frontend && \
     npm install && \
     npm install typescript@latest --save-dev && \
-    npm install @rollup/rollup-linux-x64-gnu --save-optional && \
-    npm install -g typescript
+    npm install @rollup/rollup-linux-x64-gnu --save-optional
 
 # Copy the rest of the application code
 COPY . .
@@ -28,7 +27,7 @@ RUN cd frontend && \
     npm run build
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 8080
 
 # Command to run the application
 CMD ["npm", "start"] 
