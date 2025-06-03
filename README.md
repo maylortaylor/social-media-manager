@@ -39,140 +39,86 @@ social_manager/
 ## Prerequisites
 
 - Node.js 20 or later
-- Docker and Docker Compose
-- Firebase CLI (`npm install -g firebase-tools`)
+- Docker Desktop for Mac
 - Git
 
-## Getting Started
+## Installation
 
-### Option 1: Using Docker (Recommended)
+1. Install Docker Desktop:
+```bash
+brew install --cask docker
+```
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/social_manager.git
-   cd social_manager
-   ```
+2. Start Docker Desktop from your Applications folder
 
-2. Start the development environment:
-   ```bash
-   docker-compose up
-   ```
-   This will:
-   - Build and start both frontend and backend containers
-   - Mount your local code for development
-   - Set up proper networking between services
-   - Handle node_modules properly
-
-3. Access the applications:
-   - Frontend: http://localhost:5173
-   - Backend API: http://localhost:3000
-
-### Option 2: Local Development
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/social_manager.git
-   cd social_manager
-   ```
-
-2. Install dependencies:
-   ```bash
-   # Install root dependencies
-   npm install
-
-   # Install frontend dependencies
-   cd frontend
-   npm install
-
-   # Install backend dependencies
-   cd ../backend
-   npm install
-   ```
-
-3. Start the development servers:
-
-   In one terminal:
-   ```bash
-   # Start the backend server
-   cd backend
-   npm start
-   ```
-
-   In another terminal:
-   ```bash
-   # Start the frontend development server
-   cd frontend
-   npm run dev
-   ```
-
-4. Access the applications:
-   - Frontend: http://localhost:5173
-   - Backend API: http://localhost:3000
+3. Clone the repository:
+```bash
+git clone <repository-url>
+cd social-media-manager
+```
 
 ## Development
 
-### Environment Variables
+### Local Development with Docker
 
-1. Frontend:
-   - Copy `frontend/.env.example` to `frontend/.env`
-   - Update the variables as needed
+1. Start the development environment:
+```bash
+docker compose up --build
+```
 
-2. Backend:
-   - Copy `backend/.env.example` to `backend/.env`
-   - Update the variables as needed
+2. Access the applications:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8080
+- Health Check: http://localhost:8080/api/health
 
-### Available Scripts
+### Manual Development
 
-#### Root Directory
-- `npm install`: Install all dependencies
-- `npm run dev`: Start both frontend and backend in development mode
+1. Install dependencies:
+```bash
+# Backend
+cd backend
+npm install
 
-#### Frontend
-- `npm run dev`: Start development server
-- `npm run build`: Build for production
-- `npm run lint`: Run ESLint
-- `npm run test`: Run tests
+# Frontend
+cd frontend
+npm install
+```
 
-#### Backend
-- `npm start`: Start the server
-- `npm run dev`: Start server with nodemon
-- `npm run lint`: Run ESLint
-- `npm run test`: Run tests
+2. Start the development servers:
+```bash
+# Backend
+cd backend
+npm run dev
+
+# Frontend
+cd frontend
+npm run dev
+```
 
 ## Deployment
 
-### Firebase Deployment
+The application is configured for deployment to Google Cloud Run. To deploy:
 
-1. Build the frontend:
-   ```bash
-   cd frontend
-   npm run build
-   ```
+1. Ensure you have the Google Cloud CLI installed and configured
+2. Run the deployment:
+```bash
+gcloud builds submit
+```
 
-2. Deploy to Firebase:
-   ```bash
-   firebase deploy
-   ```
+## Environment Variables
 
-### Docker Deployment
+### Backend
+- `PORT`: Server port (default: 8080)
+- `NODE_ENV`: Environment (development/production)
 
-1. Build the Docker images:
-   ```bash
-   docker-compose build
-   ```
-
-2. Push the images to your registry:
-   ```bash
-   docker-compose push
-   ```
+### Frontend
+- `VITE_API_URL`: Backend API URL (default: http://localhost:8080)
 
 ## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Create a feature branch
+2. Make your changes
+3. Submit a pull request
 
 ## License
 
