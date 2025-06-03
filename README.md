@@ -41,6 +41,7 @@ social_manager/
 - Node.js 20 or later
 - Docker Desktop for Mac
 - Git
+- Google Cloud CLI (for deployment)
 
 ## Installation
 
@@ -67,9 +68,9 @@ docker compose up --build
 ```
 
 2. Access the applications:
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8080
-- Health Check: http://localhost:8080/api/health
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:8081
+- Health Check: http://localhost:8081/api/health
 
 ### Manual Development
 
@@ -99,11 +100,31 @@ npm run dev
 
 The application is configured for deployment to Google Cloud Run. To deploy:
 
-1. Ensure you have the Google Cloud CLI installed and configured
-2. Run the deployment:
+1. Ensure you have the Google Cloud CLI installed and configured:
+```bash
+# Install Google Cloud CLI
+brew install google-cloud-sdk
+
+# Initialize and configure
+gcloud init
+```
+
+2. Build and deploy using Cloud Build:
 ```bash
 gcloud builds submit
 ```
+
+The deployment process will:
+1. Build the frontend application
+2. Build the backend Docker image
+3. Push the images to Container Registry
+4. Deploy to Cloud Run with the following configuration:
+   - Region: us-central1
+   - Platform: managed
+   - Memory: 512Mi
+   - CPU: 1
+   - Min instances: 0
+   - Max instances: 10
 
 ## Environment Variables
 
@@ -112,7 +133,36 @@ gcloud builds submit
 - `NODE_ENV`: Environment (development/production)
 
 ### Frontend
-- `VITE_API_URL`: Backend API URL (default: http://localhost:8080)
+- `VITE_API_URL`: Backend API URL (default: http://localhost:8081)
+
+## Known Issues and Solutions
+
+### Docker Development
+1. **Frontend Not Accessible**
+   - Problem: Frontend not accessible from host machine
+   - Solution: Vite is configured with `host: true` and `--host` flag
+   - Status: Resolved
+
+2. **Port Conflicts**
+   - Problem: Port 8080 already in use
+   - Solution: Backend runs on port 8081 in development
+   - Status: Resolved
+
+3. **Node Modules in Docker**
+   - Problem: Node modules not persisting correctly
+   - Solution: Using anonymous volume for node_modules
+   - Status: Resolved
+
+### Production Deployment
+1. **Cloud Run Memory Issues**
+   - Problem: Application may crash due to memory limits
+   - Solution: Configured with 512Mi memory limit
+   - Status: Monitored
+
+2. **Cold Start Performance**
+   - Problem: Slow initial response time
+   - Solution: Configured with min instances: 0, max instances: 10
+   - Status: Monitored
 
 ## Contributing
 
