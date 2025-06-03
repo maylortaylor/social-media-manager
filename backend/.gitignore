@@ -1,3 +1,5 @@
 # dotenv environment variables file
 .env 
 .env.example
+
+node_modules/
