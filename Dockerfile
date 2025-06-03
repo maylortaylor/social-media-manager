@@ -19,16 +19,18 @@ RUN cd frontend && \
     npm install typescript@latest --save-dev && \
     npm install @rollup/rollup-linux-x64-gnu --save-optional
 
+# Copy backend package files
+COPY backend/package*.json ./backend/
+
+# Install backend dependencies
+RUN cd backend && npm install
+
 # Copy the rest of the application code
 COPY . .
 
 # Build the frontend
 RUN cd frontend && \
     npm run build
-
-# Set environment variables
-ENV HOST=0.0.0.0
-ENV PORT=8080
 
 # Expose the port the app runs on
 EXPOSE 8080
