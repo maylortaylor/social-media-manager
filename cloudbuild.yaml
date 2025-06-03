@@ -31,4 +31,31 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['run', '--platform', 'linux/amd64', '--rm', 'social-media-manager', 'npm', 'run', 'build']
 
+  # Build the backend Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', 
+           '--platform', 'linux/amd64',
+           '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/firebaseapphosting-images/social-media-manager',
+           '-f', 'docker/backend/Dockerfile',
+           '.']
+
+  # Push the image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/firebaseapphosting-images/social-media-manager']
+
+  # Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'social-media-manager'
+      - '--image'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/firebaseapphosting-images/social-media-manager'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+
 timeout: '1800s' 
