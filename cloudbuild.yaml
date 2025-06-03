@@ -2,7 +2,7 @@ steps:
   # Install dependencies and TypeScript
   - name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'npm'
-    args: ['install', '-g', 'typescript']
+    args: ['install', '-g', 'typescript', 'vite']
     dir: 'frontend'
 
   # Install project dependencies
