@@ -11,11 +11,15 @@ RUN npm install
 # Copy source code
 COPY backend/ ./
 
-# Build the application
-RUN npm run build
+# Cloud Run will provide the PORT environment variable
+ENV PORT=8080
 
 # Expose the port
-EXPOSE 3000
+EXPOSE ${PORT}
+
+# Add health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:${PORT}/api/health || exit 1
 
 # Start the server
 CMD ["npm", "start"] 
