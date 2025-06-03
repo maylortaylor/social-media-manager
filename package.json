@@ -1,14 +1,13 @@
 {
   "name": "social-media-manager",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A comprehensive social media management system for Suite E Studios and @StPeteMusic",
   "scripts": {
     "build": "cd frontend && npm i && npm run build",
-    "start": "serve -s frontend/dist -l 8080",
+    "start": "cd frontend && npm run preview -- --host 0.0.0.0 --port 8080",
     "docker:build": "rm -rf node_modules package-lock.json frontend/node_modules frontend/package-lock.json && npm install --package-lock-only && cd frontend && npm install --package-lock-only && cd .. && docker build -t social-media-manager ."
   },
   "dependencies": {
-    "serve": "^14.2.4"
   },
   "private": true
 }

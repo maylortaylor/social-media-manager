@@ -26,6 +26,10 @@ COPY . .
 RUN cd frontend && \
     npm run build
 
+# Set environment variables
+ENV HOST=0.0.0.0
+ENV PORT=8080
+
 # Expose the port the app runs on
 EXPOSE 8080
 
