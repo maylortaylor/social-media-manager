@@ -11,8 +11,8 @@ RUN npm install
 # Copy source code
 COPY . .
 
-# Expose the port
-EXPOSE 3000
+# Expose Vite's default port
+EXPOSE 5173
 
-# Start the development server
-CMD ["npm", "run", "dev"] 
+# Start development server with host flag
+CMD ["npm", "run", "dev", "--", "--host"] 
